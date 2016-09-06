@@ -1,0 +1,2 @@
+# railz
+Cookiecutter for Rails
