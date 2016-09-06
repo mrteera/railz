@@ -1,4 +1,7 @@
 #!/bin/bash
 
-cd {{cookiecutter.project_name}}
+bundle install
+bundle exec spring binstub --all
+rails db:create db:migrate
+rails generate cucumber:install
 bash ./tests.sh
