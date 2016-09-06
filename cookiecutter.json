@@ -1,0 +1,6 @@
+{
+    "project_name": "studentdb",
+    "project_name_upper": "{{ cookiecutter.project_name | upper }}",
+    "title": "{{ cookiecutter.project_name | title }}",
+    "module_name": "{{ cookiecutter.project_name | title }}"
+}
