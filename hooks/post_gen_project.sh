@@ -39,10 +39,25 @@ ask() {
 
 # Credit: https://gist.github.com/davejamesmiller/1965569
 
-bundle install
-bundle exec spring binstub --all
-rails db:create db:migrate
-if ask "Open another shell and run: cd {{cookiecutter.project_name}} && zeus start"; then
-    zeus generate cucumber:install
-    bash ./tests.sh
-fi
+CURRENT_DIR=`pwd`
+bundle install && \
+# bundle exec spring binstub --all && \
+rails db:create db:migrate && \
+osascript -e 'tell application "iTerm" to activate' \
+          # -e 'tell application "System Events" to tell process "iTerm" to keystroke "t" using command down' \
+          # -e "tell application \"System Events\" to tell process \"iTerm\" to keystroke \"cd $CURRENT_DIR && zeus start\"" \
+          # -e 'tell application "System Events" to tell process "iTerm" to key code 52' \
+          -e 'tell application "System Events" to tell process "iTerm" to keystroke "t" using command down' \
+          -e "tell application \"System Events\" to tell process \"iTerm\" to keystroke \"cd $CURRENT_DIR && sleep 5 && zeus server\"" \
+          -e 'tell application "System Events" to tell process "iTerm" to key code 52' \
+          # -e 'tell application "System Events" to tell process "iTerm" to key code 123 using command down' \
+          -e 'tell application "System Events" to tell process "iTerm" to key code 123 using command down' && \
+rails generate cucumber:install && \
+bash ./tests.sh && \
+git init && \
+git checkout -b develop && \
+git add -A && \
+git commit -m "Initial {{cookiecutter.project_name}} project" &&
+osascript -e 'tell application "Google Chrome Canary" to open location "http://localhost:3000"' && \
+sleep 2
+/usr/local/bin/mine .

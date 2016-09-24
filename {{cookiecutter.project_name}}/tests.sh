@@ -4,5 +4,5 @@ set -x
 
 rubocop -RDS --fail-fast && \
 haml-lint app/views/ && \
-zeus test && \
-zeus cucumber
+rails cucumber
+rails test --fail-fast
