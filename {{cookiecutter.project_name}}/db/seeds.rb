@@ -5,3 +5,21 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+@superuser = Role.create(name: 'Superuser')
+@user = Role.create(name: 'User')
+
+User.create(
+  name: 'Teera',
+  email: 'teera@ait.ac.th',
+  password: 'asdfasdf',
+  password_confirmation: 'asdfasdf',
+  role_id: @superuser.id
+)
+
+User.create(
+  name: 'John',
+  email: 'john@ait.ac.th',
+  password: 'asdfasdf',
+  password_confirmation: 'asdfasdf',
+  role_id: @user.id
+)
