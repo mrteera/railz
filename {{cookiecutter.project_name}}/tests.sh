@@ -5,4 +5,4 @@ set -x
 rubocop -RDS --fail-fast && \
 haml-lint app/views/ && \
 rails cucumber
-COVERALLS=false rails test --fail-fast
+COVERAGE=true COVERALLS=false rails test --fail-fast

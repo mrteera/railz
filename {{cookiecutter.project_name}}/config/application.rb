@@ -13,6 +13,7 @@ module {{cookiecutter.module_name}}
     # -- all .rb files in that directory are automatically loaded.
     config.generators do |g|
       g.test_framework :minitest, spec: false, fixture: true
+      g.factory_girl false
     end
   end
 end
